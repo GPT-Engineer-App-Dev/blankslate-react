@@ -1,18 +1,27 @@
-// Update this page (the content is just a fallback if you fail and example)
-// Use chakra-ui
-import { Container, Text, VStack } from "@chakra-ui/react";
-
-// Example of using react-icons
-// import { FaRocket } from "react-icons/fa";
-// <IconButton aria-label="Add" icon={<FaRocket />} size="lg" />; // IconButton would also have to be imported from chakra
+import { Box, Container, Text, VStack, Flex, Spacer, IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const Index = () => {
+  const { toggleColorMode } = useColorMode();
+  const colorModeIcon = useColorModeValue(<FaMoon />, <FaSun />);
+
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4}>
-        <Text fontSize="2xl">Your Blank Canvas</Text>
-        <Text>Chat with the agent to start making edits.</Text>
-      </VStack>
+    <Container maxW="container.lg">
+      <Flex as="nav" w="100%" p={4} align="center" borderBottom="1px" borderColor="gray.200">
+        <Text fontSize="xl" fontWeight="bold">MyApp</Text>
+        <Spacer />
+        <IconButton
+          aria-label="Toggle color mode"
+          icon={colorModeIcon}
+          onClick={toggleColorMode}
+        />
+      </Flex>
+      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" height="80vh">
+        <VStack spacing={4}>
+          <Text fontSize="2xl">Your Blank Canvas</Text>
+          <Text>Chat with the agent to start making edits.</Text>
+        </VStack>
+      </Box>
     </Container>
   );
 };
